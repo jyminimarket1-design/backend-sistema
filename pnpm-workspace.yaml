@@ -1,0 +1,8 @@
+allowBuilds:
+  '@google/genai': true
+  mongodb-memory-server: true
+  protobufjs: true
+onlyBuiltDependencies:
+  - '@google/genai'
+  - mongodb-memory-server
+  - protobufjs

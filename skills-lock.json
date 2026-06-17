@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "file-organization": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "computedHash": "425c3b58b70a6953f18de2002e411aa93f5b00a60fff2fc57f028b759d50271b"
+    },
+    "mongodb-ai": {
+      "source": "romiluz13/mongodb-agent-skills",
+      "sourceType": "github",
+      "computedHash": "ea67bff5346f635933d1ffb2c1cf31cbe04546eb225efc98bfab62eb3811675d"
+    },
+    "nodejs-backend-patterns": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "47f9ab40a7ddedd69089da1390080735f6715356916d6fc43f525522887d7dfe"
+    }
+  }
+}
