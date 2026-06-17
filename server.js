@@ -52,7 +52,7 @@ app.get(["/favicon.ico", "/favicon.png", "/apple-touch-icon.png"], (req, res) =>
 // 1. CORS Y PARSING
 const whitelist = [
   process.env.CLIENT_URL,
-  'https://dashboard-react-tailwindcss.vercel.app',
+  'https://jyminimarket1.vercel.app/login',
   'http://localhost:5173'
 ]
 
