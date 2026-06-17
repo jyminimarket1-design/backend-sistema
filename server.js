@@ -52,20 +52,25 @@ app.get(["/favicon.ico", "/favicon.png", "/apple-touch-icon.png"], (req, res) =>
 // 1. CORS Y PARSING
 const whitelist = [
   process.env.CLIENT_URL,
-  'https://jyminimarket1.vercel.app/login',
+  'https://jyminimarket1.vercel.app',
   'http://localhost:5173'
-]
+];
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Permitir peticiones sin origen (como Postman o curl)
+    // Allow requests without Origin (e.g., server-to-server, Postman)
     if (!origin) return callback(null, true);
 
+    // Direct whitelist (dev and explicit production domain)
     if (whitelist.includes(origin)) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'));
+      return callback(null, true);
     }
+    // Allow any sub‑origin that contains our production domain (covers redirects, path, etc.)
+    if (origin && origin.includes('jyminimarket1.vercel.app')) {
+      return callback(null, true);
+    }
+    // Otherwise reject
+    return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
