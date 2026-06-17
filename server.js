@@ -57,24 +57,10 @@ const whitelist = [
 ];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests without Origin (e.g., server-to-server, Postman)
-    if (!origin) return callback(null, true);
-
-    // Direct whitelist (dev and explicit production domain)
-    if (whitelist.includes(origin)) {
-      return callback(null, true);
-    }
-    // Allow any sub‑origin that contains our production domain (covers redirects, path, etc.)
-    if (origin && origin.includes('jyminimarket1.vercel.app')) {
-      return callback(null, true);
-    }
-    // Otherwise reject
-    return callback(new Error('Not allowed by CORS'));
-  },
+  origin: true,
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // 1.5 SLA TIMEOUT (Fail Fast: corta cualquier request que exceda 1.5s)
