@@ -11,7 +11,7 @@ export const createSaleSchema = z.object({
     // customer_id es resuelto por injectBusinessContext (req.userId), NO viene del body
     items: z.array(saleItemSchema).min(1, "At least one product item is required"),
     payment_method: z.enum(
-      ['Efectivo', 'Divisas', 'Tarjeta', 'Pago Movil', 'Transferencia', 'Zelle'],
+      ['Efectivo', 'Divisas', 'Tarjeta', 'BioPago', 'Pago Movil', 'Transferencia', 'Zelle'],
       { errorMap: () => ({ message: "Método de pago no válido. Opciones: Efectivo, Divisas, Tarjeta, Pago Movil, Transferencia, Zelle" }) }
     ),
     exchange_rate: z.number().min(0.01).optional()
@@ -31,7 +31,7 @@ export const updateSaleSchema = z.object({
   body: z.object({
     total_amount: z.number().min(0, "Total amount must be a positive number").optional(),
     payment_method: z.enum(
-      ['Efectivo', 'Divisas', 'Tarjeta', 'Pago Movil', 'Transferencia', 'Zelle'],
+      ['Efectivo', 'Divisas', 'Tarjeta', 'BioPago', 'Pago Movil', 'Transferencia', 'Zelle'],
       { errorMap: () => ({ message: "Método de pago no válido." }) }
     ).optional(),
     items: z.array(saleItemSchema).min(1, "At least one product item is required").optional()

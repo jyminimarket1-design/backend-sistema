@@ -19,8 +19,8 @@ function dayRangeVE(offsetDays = 0) {
   const y = nowVE.getUTCFullYear();
   const m = nowVE.getUTCMonth();
   const d = nowVE.getUTCDate() + offsetDays;
-  const start = new Date(Date.UTC(y, m, d,  0,  0,  0,   0) + VE_OFFSET_MS);
-  const end   = new Date(Date.UTC(y, m, d, 23, 59, 59, 999) + VE_OFFSET_MS);
+  const start = new Date(Date.UTC(y, m, d, 0, 0, 0, 0) + VE_OFFSET_MS);
+  const end = new Date(Date.UTC(y, m, d, 23, 59, 59, 999) + VE_OFFSET_MS);
   return { start, end };
 }
 
@@ -102,16 +102,16 @@ export const getSales = async (req, res) => {
 
       } else if (dateFilterParam === '7days') {
         const { start } = dayRangeVE(-6);
-        const { end }   = dayRangeVE(0);
+        const { end } = dayRangeVE(0);
         dateFilter = { $gte: start, $lte: end };
 
       } else if (dateFilterParam === '30days') {
         const { start } = dayRangeVE(-29);
-        const { end }   = dayRangeVE(0);
+        const { end } = dayRangeVE(0);
         dateFilter = { $gte: start, $lte: end };
 
       } else if (dateFilterParam === 'month') {
-        const nowVE   = new Date(Date.now() - VE_OFFSET_MS);
+        const nowVE = new Date(Date.now() - VE_OFFSET_MS);
         const firstDay = new Date(Date.UTC(nowVE.getUTCFullYear(), nowVE.getUTCMonth(), 1, 0, 0, 0, 0) + VE_OFFSET_MS);
         const { end } = dayRangeVE(0);
         dateFilter = { $gte: firstDay, $lte: end };
@@ -235,7 +235,7 @@ export const getSaleById = async (req, res) => {
 export const cancelSale = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     // Restricción estricta: Los empleados no pueden anular ventas
     if (req.userRole === 'employee') {
       return res.status(403).json({ success: false, message: 'Los empleados no tienen permisos para anular ventas.' });

@@ -18,7 +18,7 @@ const saleSchema = new mongoose.Schema({
   payment_method: {
     type: String,
     required: true,
-    enum: ['Efectivo', 'Divisas', 'Tarjeta', 'Pago Movil', 'Transferencia', 'Zelle']
+    enum: ['Efectivo', 'Divisas', 'Tarjeta', 'BioPago', 'Pago Movil', 'Transferencia', 'Zelle']
   },
   exchange_rate: {
     type: Number,
