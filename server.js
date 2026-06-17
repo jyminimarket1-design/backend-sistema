@@ -72,7 +72,11 @@ app.use(cors({
 }))
 
 // 1.5 SLA TIMEOUT (Fail Fast: corta cualquier request que exceda 1.5s)
-app.use(slaTimeout);
+app.use((req, res, next) => {
+  // Allow the browser to read Set-Cookie header on cross‑origin responses
+  res.setHeader('Access-Control-Expose-Headers', 'Set-Cookie');
+  next();
+});
 
 // 3. SEGURIDAD (Filtros de entrada)
 app.use(helmet({
