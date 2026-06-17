@@ -51,8 +51,10 @@ app.get(["/favicon.ico", "/favicon.png", "/apple-touch-icon.png"], (req, res) =>
 
 // 1. CORS Y PARSING
 const whitelist = [
+  process.env.CLIENT_URL,
   'https://jyminimarket1.vercel.app',
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'http://localhost:5000'
 ];
 
 app.use(cors({
